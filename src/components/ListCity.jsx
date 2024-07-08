@@ -1,5 +1,6 @@
 import { useEffect, useState  } from 'react'
 import axios from 'axios'
+import "../styles/Main.css"
 
 export default function ListCity({city, removeCity}) {
   const [data, setData] = useState(null);
@@ -12,8 +13,8 @@ export default function ListCity({city, removeCity}) {
     }, [])
 
   return (
-    <div className='flex flex-col w-full items-center justify-center'>
-        <div className='border border-black flex items-center'>
+    <div className='flex flex-col w-1/2 items-center justify-center glass mb-2 p-1'>
+        <div className='flex items-center w-full justify-between'>
           <p className='text-[32px]'>{data?.name} {data?.sys.country}</p>
           <div className='flex flex-col ml-2 items-center'>
             <p className='text-[32px]'>{data?.weather[0].main}</p>
@@ -41,7 +42,7 @@ export default function ListCity({city, removeCity}) {
               <p className='text-[16px] ml-2'>{(Math.round((data?.main.feels_like-273.15) * 100) / 100).toString()}</p>
             </div>
           </div>
-          <button onClick={() => {removeCity(city)}}>Delete</button>
+          <button className='border border-black text-[24px] rounded ml-5' onClick={() => {removeCity(city)}}>Delete</button>
         </div>
     </div>
   )
