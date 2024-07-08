@@ -2,22 +2,28 @@ import { useEffect, useState  } from 'react'
 import axios from 'axios'
 import "../styles/Main.css"
 
-export default function Main() {
+export default function Main({position}) {
   const [data, setData] = useState(null);
   const [icon, setIcon] = useState(null);
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const API_key = "3f0661a993a1df77691d6bc7819ae9ed";
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-      axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_key}`).then((response) => {
+    const API_key = "3f0661a993a1df77691d6bc7819ae9ed";
+    if (position == null){
+      navigator.geolocation.getCurrentPosition((position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_key}`).then((response) => {
+          setData(response.data);
+          setIcon("./"+response.data.weather[0].icon+".svg");
+        })
+      });
+    }else{
+      axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${position.lat}&lon=${position.lon}&appid=${API_key}`).then((response) => {
         setData(response.data);
         setIcon("./"+response.data.weather[0].icon+".svg");
-        console.log(response.data);
       })
-    });
-  }, [])
+    }
+  }, [position])
 
   return (
     <div className='flex flex-col min-h-[93vh] font-Roboto'>
