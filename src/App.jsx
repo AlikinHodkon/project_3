@@ -24,11 +24,16 @@ function App() {
     }
   ])
 
+  function openSideBar(){
+    document.getElementById("sideBar").classList.toggle('hidden');
+  }
+
   function changeCity(newCity){
     setCity(newCity);
   }
 
-  useEffect(() => {    
+  useEffect(() => {
+    if (city == "") {setPosition(null); return;}    
     const API_key = "3f0661a993a1df77691d6bc7819ae9ed";
     axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${API_key}`).then((response) => {
       setPosition({lat: response.data[0].lat, lon: response.data[0].lon }) 
@@ -36,7 +41,7 @@ function App() {
 
   return(
     <div className="bg-cloudsAbove bg-cover min-h-[100vh] bg-no-repeat">
-      <Navbar changeCity={changeCity} settings={settings} setSettings={setSettings} />
+      <Navbar changeCity={changeCity} settings={settings} setSettings={setSettings} openSideBar={openSideBar} />
       <Main position={position} settings={settings} />
     </div>
   )
