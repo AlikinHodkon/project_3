@@ -1,10 +1,13 @@
-import { useEffect, useState  } from 'react'
+import { useEffect, useState, useRef  } from 'react'
 import axios from 'axios'
 import "../styles/Main.css"
 
-export default function Main({position}) {
+export default function Main({position, settings}) {
   const [data, setData] = useState(null);
   const [icon, setIcon] = useState(null);
+  const wind = useRef(null);
+  const sun = useRef(null);
+  const temp = useRef(null);
 
   useEffect(() => {
     const API_key = "3f0661a993a1df77691d6bc7819ae9ed";
@@ -25,9 +28,21 @@ export default function Main({position}) {
     }
   }, [position])
 
+  useEffect(() => {
+    wind.current.classList.toggle('hidden');
+  }, [settings.wind])
+
+  useEffect(() => {
+    sun.current.classList.toggle('hidden');
+  }, [settings.sun])
+
+  useEffect(() => {
+    temp.current.classList.toggle('hidden'); 
+  }, [settings.temp])
+
   return (
     <div className='flex flex-col min-h-[93vh] font-Roboto'>
-        <h1 className='text-[64px] text-center font-bold'>Weather in your location</h1>
+        <h1 className='text-[64px] text-center font-bold'>Weather in {data?.name}</h1>
           <div className='flex'>
             <div className='flex flex-col w-[20vw] ml-[5vw] glass h-[25vh] items-center justify-center'>
               <p className='text-[40px]'>{data?.name}</p>
@@ -40,7 +55,7 @@ export default function Main({position}) {
               <p className='text-[40px]'>{data?.weather[0].main}</p>
               <p className='text-[20px]'>{data?.weather[0].description}</p>
             </div>
-            <div className='flex items-center justify-center flex-col ml-2 glass w-[20vw] h-[25vh] mt-5'>
+            <div ref={wind} className='flex items-center justify-center flex-col ml-2 glass w-[20vw] h-[25vh] mt-5 hidden'>
               <h3 className='text-[40px]'>Wind</h3>
               <div className='flex flex-row'>
                 <p className='text-[20px]'>{data?.wind.deg}</p>
@@ -48,7 +63,7 @@ export default function Main({position}) {
                 <p className='text-[20px]'>{data?.wind.speed}</p>
               </div>
             </div>
-            <div className='flex items-center justify-center flex-col ml-2 glass w-[20vw] h-[25vh] mt-5'> 
+            <div ref={sun} className='flex items-center justify-center flex-col ml-2 glass w-[20vw] h-[25vh] mt-5 hidden'> 
               <h3 className='text-[40px]'>Sun</h3>
               <div className='flex flex-row'>
                 <p className='text-[20px]'>{new Date(data?.sys.sunrise * 1000).toUTCString().slice(-12, -4)}</p>
@@ -56,7 +71,7 @@ export default function Main({position}) {
               </div>
             </div>
           </div>
-          <div className='flex flex-col ml-[5vw] mr-[5vw] mt-5 min-h-[25vh] items-center justify-center glass'>
+          <div ref={temp} className='flex flex-col ml-[5vw] mr-[5vw] mt-5 min-h-[25vh] items-center justify-center glass hidden'>
             <h3 className='text-[40px] text-center'>Temperature</h3>
             <div className='flex justify-center'>
               <p className='text-[20px]'>{(Math.round((data?.main.temp-273.15) * 100) / 100).toString()}</p>

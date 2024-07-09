@@ -10,6 +10,7 @@ import axios from "axios";
 function App() {
   const [city, setCity] = useState("");
   const [position, setPosition] = useState(null);
+  const [settings, setSettings] = useState({wind: true, sun: true, temp: true})
 
   const router = createBrowserRouter([
     {
@@ -35,8 +36,8 @@ function App() {
 
   return(
     <div className="bg-cloudsAbove bg-cover min-h-[100vh] bg-no-repeat">
-      <Navbar changeCity={changeCity} change />
-      <Main position={position} />
+      <Navbar changeCity={changeCity} settings={settings} setSettings={setSettings} />
+      <Main position={position} settings={settings} />
     </div>
   )
 }
