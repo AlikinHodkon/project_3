@@ -7,6 +7,9 @@ export default function Main({position, settings, changeCity, city}) {
   const [data, setData] = useState(null);
   const [icon, setIcon] = useState(null);
   const [cities, setCities] = useState([]);
+  const [staticCities, setStaticCities] = useState([]);
+  const [inputSearch, setInputSearch] = useState("");
+  const search = useRef(null);
   const wind = useRef(null);
   const sun = useRef(null);
   const temp = useRef(null);
@@ -26,10 +29,18 @@ export default function Main({position, settings, changeCity, city}) {
       axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${position.lat}&lon=${position.lon}&appid=${API_key}`).then((response) => {
         setData(response.data);
         setIcon("./"+response.data.weather[0].icon+".svg");
+        search.current.value = "";
+        setInputSearch("");
         if (cities.filter((c) => c.name == city).length == 0) setCities([...cities, {id: Date.now(), name: city}])
+        setStaticCities([...cities, {id: Date.now(), name: city}]);
       })
     }
   }, [position])
+
+  useEffect(() => {
+    if (search.current.value === "") setCities(staticCities);
+    else setCities(staticCities.filter((c) => search.current.value === c.name.substring(0, search.current.value.length)));
+  },[inputSearch])
 
   function removeCity(city){
     setCities(cities.filter((c) => c.id != city.id));
@@ -87,7 +98,8 @@ export default function Main({position, settings, changeCity, city}) {
               </div>
             </div>
         </div>
-        <div id="sideBar" className='bg-white w-2/12 rounded-lg text-black hidden'>
+        <div id="sideBar" className='bg-white w-2/12 rounded-lg text-black font-Roboto hidden'>
+          <input ref={search} onChange={() => {setInputSearch(search.current.value)}} className='pl-5 w-full border border-black' placeholder='City' />
           {cities.map((city) => <City city={city} removeCity={removeCity} changeCity={changeCity} key={city.id}/>)}
         </div>
     </div>
