@@ -3,7 +3,7 @@ import axios from 'axios'
 import City from '../components/City';
 import "../styles/Main.css"
 
-export default function Main({position, settings}) {
+export default function Main({position, settings, changeCity, city}) {
   const [data, setData] = useState(null);
   const [icon, setIcon] = useState(null);
   const [cities, setCities] = useState([]);
@@ -26,7 +26,7 @@ export default function Main({position, settings}) {
       axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${position.lat}&lon=${position.lon}&appid=${API_key}`).then((response) => {
         setData(response.data);
         setIcon("./"+response.data.weather[0].icon+".svg");
-        setCities([...cities, {id: Date.now(), lat: position.lat, lon: position.lon, name: response.data.name}])
+        if (cities.filter((c) => c.name == city).length == 0) setCities([...cities, {id: Date.now(), name: city}])
       })
     }
   }, [position])
@@ -48,7 +48,7 @@ export default function Main({position, settings}) {
   }, [settings.temp])
 
   return (
-    <div className='flex flex-row min-h-[93vh] font-Roboto'>
+    <div className='flex flex-row min-h-[93vh] font-Roboto text-gray-300'>
         <div className='flex flex-col w-full'>
           <h1 className='text-[64px] text-center font-bold'>Weather in {data?.name}</h1>
             <div className='flex'>
@@ -87,8 +87,8 @@ export default function Main({position, settings}) {
               </div>
             </div>
         </div>
-        <div id="sideBar" className='bg-white w-2/12 hidden'>
-          {cities.map((city) => <City city={city} removeCity={removeCity} key={city.id}/>)}
+        <div id="sideBar" className='bg-white w-2/12 rounded-lg text-black hidden'>
+          {cities.map((city) => <City city={city} removeCity={removeCity} changeCity={changeCity} key={city.id}/>)}
         </div>
     </div>
   )

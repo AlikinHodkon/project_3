@@ -24,11 +24,11 @@ export default function Navbar({changeCity, settings, setSettings, openSideBar})
       <h2 className="text-center font-bold text-[64px]">Settings</h2>
       <p className="text-center font-semibold text-[32px]">Choose what kind of data do you want to display</p>
       <ul className="flex flex-col text-[32px] font-semibold w-1/2">
-        <li className="flex justify-between mb-2">Wind<button onClick={() => {setSettings({wind: !settings.wind, sun: settings.sun, temp: settings.temp}); wind == "On" ? setWind("Off") : setWind("On")}} className="border-black border-[2px] rounded-xl w-[70px]">{wind}</button></li>
-        <li className="flex justify-between mb-2">Sunset & Sunrise<button onClick={() => {setSettings({wind: settings.wind, sun: !settings.sun, temp: settings.temp}); sun == "On" ? setSun("Off") : setSun("On")}} className="border-black border-[2px] rounded-xl w-[70px]">{sun}</button></li>
-        <li className="flex justify-between mb-2">Temperature<button onClick={() => {setSettings({wind: settings.wind, sun: settings.sun, temp: !settings.temp}); temp == "On" ? setTemp("Off") : setTemp("On")}} className="border-black border-[2px] rounded-xl w-[70px]">{temp}</button></li>
+        <li className="flex justify-between mb-2 p-1">Wind<button onClick={() => {setSettings({wind: !settings.wind, sun: settings.sun, temp: settings.temp}); wind == "On" ? setWind("Off") : setWind("On")}} className="border-black border-[2px] rounded-xl w-[70px]">{wind}</button></li>
+        <li className="flex justify-between mb-2 p-1">Sunset & Sunrise<button onClick={() => {setSettings({wind: settings.wind, sun: !settings.sun, temp: settings.temp}); sun == "On" ? setSun("Off") : setSun("On")}} className="border-black border-[2px] rounded-xl w-[70px]">{sun}</button></li>
+        <li className="flex justify-between mb-2 p-1">Temperature<button onClick={() => {setSettings({wind: settings.wind, sun: settings.sun, temp: !settings.temp}); temp == "On" ? setTemp("Off") : setTemp("On")}} className="border-black border-[2px] rounded-xl w-[70px]">{temp}</button></li>
       </ul>
-      <button onClick={closeModal} className="border-[3px] border-black text-[32px] font-semibold rounded-2xl">Закрыть</button>
+      <button onClick={closeModal} className="border-[3px] p-1 border-black text-[32px] font-semibold rounded-2xl">Close</button>
     </div>
   );
   return (

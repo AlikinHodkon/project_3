@@ -42,7 +42,7 @@ function App() {
   return(
     <div className="bg-cloudsAbove bg-cover min-h-[100vh] bg-no-repeat">
       <Navbar changeCity={changeCity} settings={settings} setSettings={setSettings} openSideBar={openSideBar} />
-      <Main position={position} settings={settings} />
+      <Main position={position} settings={settings} changeCity={changeCity} city={city} />
     </div>
   )
 }
