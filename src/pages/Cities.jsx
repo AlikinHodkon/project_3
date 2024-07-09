@@ -10,7 +10,7 @@ export default function Cities() {
   
     useEffect(() => {    
       const API_key = "3f0661a993a1df77691d6bc7819ae9ed";
-      axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${API_key}`).then((response) => {
+      axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${API_key}`).then((response) => {
         setCities([...cities, {id: Date.now(), lat: response.data[0].lat, lon: response.data[0].lon }]) 
       })}, [city]);
   
