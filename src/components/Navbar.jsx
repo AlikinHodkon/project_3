@@ -71,14 +71,14 @@ export default function Navbar({changeCity, settings, setSettings, openSideBar})
     </div>
   );
   return (
-    <div className='flex w-full max-h-[70px] text-white'>
-        <ul className='flex w-full text-[24px] font-semibold font-Mont items-center justify-center'>
-            <li className="mr-auto ml-[5vw] text-[32px]">Your Weather</li>
-            <li className="p-1 mr-[5vw]"><input ref={inputCity} onKeyDownCapture={handleKeyPressed} type='text' className='h-1/2 outline-none bg-transparent text-[32px] search placeholder:text-white pl-10' placeholder='Search City' /></li>
+    <div className='flex max-h-[70px] text-white'>
+        <ul className='flex w-full text-[14px] xl:text-[24px] font-semibold font-Mont items-center justify-center'>
+            <li className="xl:mr-auto xl:ml-[5vw] xl:text-[32px]">Your Weather</li>
+            <li className="p-1 xl:mr-[5vw]"><input ref={inputCity} onKeyDownCapture={handleKeyPressed} type='text' className='h-1/2 outline-none bg-transparent text-[14px] max-w-[100px] xl:min-w-[30vw] xl:text-[32px] search placeholder:text-white pl-4 xl:pl-10' placeholder='Search City' /></li>
             {/* <li className="mr-[5vw]"><button className='border-[2px] rounded-xl p-1 border-white w-[6vw]'>Search</button></li> */}
-            <li className="mr-[5vw] h-full flex items-center justify-center cursor-pointer text-[24px]" onClick={() => {changeCity("")}}>Home</li>
-            <li className="mr-[5vw] h-full flex items-center justify-center cursor-pointer text-[24px]" onClick={() => {openSideBar()}}>Cities</li>
-            <li onClick={openModal} className="mr-[5vw] h-full flex items-center justify-center cursor-pointer">Settings</li>
+            <li className="xl:mr-[5vw] mr-1 h-full flex items-center justify-center cursor-pointer text-[14px] xl:text-[24px]" onClick={() => {changeCity("")}}>Home</li>
+            <li className="xl:mr-[5vw] mr-1 h-full flex items-center justify-center cursor-pointer text-[14px] xl:text-[24px]" onClick={() => {openSideBar()}}>Cities</li>
+            <li onClick={openModal} className="xl:mr-[5vw] h-full flex items-center justify-center cursor-pointer">Settings</li>
         </ul>
         <Modal isOpen={modalIsOpen} onRequestClose={closeModal}>{modalContent}</Modal>
     </div>

@@ -36,7 +36,6 @@ export default function Body({position, settings, changeCity}) {
         if (cities.filter((c) => c.name == response.data.name).length == 0) setCities([...cities, {id: Date.now(), name: response.data.name}])
         setStaticCities([...cities, {id: Date.now(), name: response.data.name}]);
         localStorage.setItem("cities", JSON.stringify([...cities, {id: Date.now(), name: response.data.name}]));
-        console.log(JSON.parse(localStorage.getItem("cities")));
       })
     }
   }, [position])
@@ -76,48 +75,48 @@ export default function Body({position, settings, changeCity}) {
   }, [settings.temp])
   // bg-[#1B1B1D]
   return (
-    <div className='flex flex-row min-h-[93vh] font-Mont text-white'>
+    <div className='flex flex-col xl:flex-row xl:min-h-[93vh] font-Mont text-white'>
         <div className='flex flex-col w-full'>
-          <h1 className='text-[64px] text-center font-bold'>Weather in {data?.name}</h1>
-            <div className='flex'>
-              <div className='flex flex-col w-[20vw] ml-[5vw] p-1 glass rounded-[15px] h-[25vh] items-center justify-center glass'>
-                <p className='text-[40px] text-center'>{data?.name}</p>
-                <p className='text-[40px] text-center'>{data?.sys.country}</p>
+          <h1 className='xl:text-[64px] text-[24px] text-center font-bold'>Weather in {data?.name}</h1>
+            <div className='flex flex-wrap xl:flex-row flex-col-reverse'>
+              <div className='flex flex-col xl:w-[20vw] min-h-[15vh] xl:ml-[5vw] xl:mr-0 mr-5 ml-5 p-1 glass rounded-[15px] xl:h-[25vh] items-center justify-center glass'>
+                <p className='xl:text-[40px] text-[30px] text-center'>{data?.name}</p>
+                <p className='xl:text-[40px] text-[20px] text-center'>{data?.sys.country}</p>
               </div>
-              <img className='ml-auto mr-[5vw] min-w-[20vw] max-h-[25vh] object-cover' src={icon}></img>
+              <img className='xl:ml-auto xl:mr-[5vw] xl:min-w-[20vw] xl:max-h-[25vh] xl:object-contain object-contain h-[35vh]' src={icon}></img>
             </div> 
-            <div className='min-w-[70vw] flex'>
-              <div className='flex flex-col glass w-[20vw] ml-[5vw] mt-5 h-[25vh] rounded-[15px] items-center justify-center'>
-                <p className='text-[40px] text-center'>{data?.weather[0].main}</p>
-                <p className='text-[20px] text-center'>{data?.weather[0].description}</p>
+            <div className='min-w-[70vw] flex flex-wrap'>
+              <div className='flex flex-col glass xl:w-[20vw] w-full ml-[5vw] min-h-[15vh] xl:mr-0 mr-5 mt-5 xl:h-[25vh] rounded-[15px] items-center justify-center'>
+                <p className='xl:text-[40px] text-[30px] text-center'>{data?.weather[0].main}</p>
+                <p className='xl:text-[20px] text-[20px] text-center'>{data?.weather[0].description}</p>
               </div>
-              <div ref={wind} className='flex items-center justify-center flex-col ml-5 glass rounded-[15px] w-[20vw] h-[25vh] mt-5 hidden'>
-                <h3 className='text-[40px]'>Wind</h3>
-                <div className='flex flex-col'>
-                  <p className='text-[20px] text-center'>deg: {data?.wind.deg} </p>
-                  <p className='text-[20px] text-center'>gust: {data?.wind.gust} </p>
-                  <p className='text-[20px] text-center'>spd: {data?.wind.speed} m/s</p>
+              <div ref={wind} className='flex items-center justify-center flex-col ml-5 xl:mr-0 min-h-[15vh] mr-5 glass rounded-[15px] w-full xl:w-[20vw] xl:h-[25vh] mt-5 hidden'>
+                <h3 className='xl:text-[40px] text-[30px]'>Wind</h3>
+                <div className='flex xl:flex-col'>
+                  <p className='xl:text-[20px] text-[20px] xl:mr-0 mr-1 text-center'>deg: {data?.wind.deg} </p>
+                  <p className='xl:text-[20px] text-[20px] xl:mr-0 mr-1 text-center'>gust: {data?.wind.gust} </p>
+                  <p className='xl:text-[20px] text-[20px] xl:mr-0 mr-1 text-center'>spd: {data?.wind.speed} m/s</p>
                 </div>
               </div>
-              <div ref={sun} className='flex items-center justify-center flex-col ml-5 glass rounded-[15px] w-[20vw] h-[25vh] mt-5 hidden'> 
-                <h3 className='text-[40px]'>Sun</h3>
+              <div ref={sun} className='flex items-center justify-center flex-col ml-5 xl:mr-0 min-h-[15vh] mr-5 glass rounded-[15px] w-full xl:w-[20vw] xl:h-[25vh] mt-5 hidden'> 
+                <h3 className='xl:text-[40px] text-[30px]'>Sun</h3>
                 <div className='flex flex-row'>
-                  <div className='text-[20px] text-center'>
+                  <div className='xl:text-[20px] text-[20px] text-center'>
                     <p>sunrise: {new Date(data?.sys.sunrise * 1000).toUTCString().slice(-12, -4)}</p>
                     <p>sunset: {new Date(data?.sys.sunset * 1000).toUTCString().slice(-12, -4)}</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div ref={temp} className='flex flex-col ml-[5vw] mr-[5vw] mt-5 min-h-[25vh] items-center justify-center glass rounded-[15px] hidden'>
-              <h3 className='text-[40px] text-center'>Temperature</h3>
+            <div ref={temp} className='flex flex-col ml-[5vw] mr-[5vw] mt-5 xl:mb-0 mb-5 xl:min-h-[25vh] min-h-[15vh] items-center justify-center glass rounded-[15px] hidden'>
+              <h3 className='xl:text-[40px] text-[30px] text-center'>Temperature</h3>
               <div className='flex justify-center'>
-                <p className='text-[20px] text-center'>real: {(Math.round((data?.main.temp-273.15) * 100) / 100).toString()} </p>
-                <p className='text-[20px] text-center ml-2'>feels like: {(Math.round((data?.main.feels_like-273.15) * 100) / 100).toString()}</p>
+                <p className='xl:text-[20px] text-[20px] text-center'>real: {(Math.round((data?.main.temp-273.15) * 100) / 100).toString()} </p>
+                <p className='xl:text-[20px] text-[20px] text-center ml-2'>feels like: {(Math.round((data?.main.feels_like-273.15) * 100) / 100).toString()}</p>
               </div>
             </div>
         </div>
-        <div id="sideBar" className='glass rounded-[15px] w-2/12 max-h-[93vh] text-white font-Mont overflow-auto hidden'>
+        <div id="sideBar" className='glass rounded-[15px] w-full max-h-[35vh] xl:w-2/12 xl:max-h-[93vh] text-white font-Mont overflow-auto hidden'>
           <input ref={search} onChange={() => {setInputSearch(search.current.value)}} className='pl-10 w-full glass outline-none search placeholder:text-white text-white text-[24px]' placeholder='Search City' />
           {cities.map((city) => <City city={city} removeCity={removeCity} changeCity={changeCity} key={city.id}/>)}
         </div>
