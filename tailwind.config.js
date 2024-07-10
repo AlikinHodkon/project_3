@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        Roboto: ["Roboto", "sans-serif"]
+        Mont: ["Montserrat", "sans-serif"]
       },
       colors: {
         night: "#003366",

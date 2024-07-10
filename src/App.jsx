@@ -1,6 +1,7 @@
 import "./App.css"
 import Main from './pages/Main.jsx';
 import Error from "./pages/Error.jsx"
+import cloudsAbove from  "../public/srY.gif"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 function App() {
@@ -12,9 +13,9 @@ function App() {
       errorElement: <Error />,
     }
   ])
-
+  // bg-[#111015] 
   return(
-    <div className="bg-night bg-cover min-h-[100vh] bg-no-repeat">
+    <div className="bg-cover gif min-h-[100vh] bg-no-repeat">
       <RouterProvider router={router} />
     </div>
   )
