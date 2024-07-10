@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/prop-types */
 import { useEffect, useState, useRef  } from 'react'
 import axios from 'axios'
 import City from './City';
@@ -50,15 +52,27 @@ export default function Body({position, settings, changeCity, city}) {
   }
 
   useEffect(() => {
-    wind.current.classList.toggle('hidden');
+    if (settings.wind === true){
+      wind.current.classList.remove('hidden');
+    }else{
+      wind.current.classList.add('hidden');
+    }
   }, [settings.wind])
 
   useEffect(() => {
-    sun.current.classList.toggle('hidden');
+    if (settings.sun === true){
+      sun.current.classList.remove('hidden');
+    }else{
+      sun.current.classList.add('hidden');
+    }
   }, [settings.sun])
 
   useEffect(() => {
-    temp.current.classList.toggle('hidden'); 
+    if (settings.temp === true){
+      temp.current.classList.remove('hidden');
+    }else{
+      temp.current.classList.add('hidden');
+    } 
   }, [settings.temp])
 
   return (
@@ -101,7 +115,7 @@ export default function Body({position, settings, changeCity, city}) {
               </div>
             </div>
         </div>
-        <div id="sideBar" className='bg-white w-2/12 max-h-[93vh] rounded-lg text-black font-Roboto overflow-auto hidden'>
+        <div id="sideBar" className='glass w-2/12 max-h-[93vh] rounded-lg text-white font-Roboto overflow-auto hidden'>
           <input ref={search} onChange={() => {setInputSearch(search.current.value)}} className='pl-5 w-full border border-black' placeholder='City' />
           {cities.map((city) => <City city={city} removeCity={removeCity} changeCity={changeCity} key={city.id}/>)}
         </div>

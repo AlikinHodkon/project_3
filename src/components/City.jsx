@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 export default function City({city, removeCity, changeCity}) {
   return (
     <div className="flex justify-between border border-black">

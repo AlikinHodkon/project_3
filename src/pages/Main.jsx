@@ -6,8 +6,12 @@ import axios from "axios";
 export default function Main() {
     const [city, setCity] = useState("");
     const [position, setPosition] = useState(null);
-    const [settings, setSettings] = useState({wind: true, sun: true, temp: true})
-    
+    const [settings, setSettings] = useState({
+        wind: JSON.parse(localStorage.getItem('settingsWind')) === null ? true : JSON.parse(localStorage.getItem('settingsWind')), 
+        sun: JSON.parse(localStorage.getItem('settingsSun')) === null ? true : JSON.parse(localStorage.getItem('settingsSun')), 
+        temp: JSON.parse(localStorage.getItem('settingsTemp')) === null ? true : JSON.parse(localStorage.getItem('settingsTemp'))
+    })
+
     function openSideBar(){
         document.getElementById("sideBar").classList.toggle('hidden');
     }

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useRef, useState } from "react"
 import Modal from "react-modal";
 import "../styles/Main.css"
@@ -7,9 +8,40 @@ Modal.setAppElement("#root");
 export default function Navbar({changeCity, settings, setSettings, openSideBar}) {
   const inputCity = useRef(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [wind, setWind] = useState("On");
-  const [sun, setSun] = useState("On");
-  const [temp, setTemp] = useState("On"); 
+  const [wind, setWind] = useState(localStorage.getItem('wind') === null ? "On" : localStorage.getItem('wind'));
+  const [sun, setSun] = useState(localStorage.getItem('sun') === null ? "On" : localStorage.getItem('sun'));
+  const [temp, setTemp] = useState(localStorage.getItem('temp') === null ? "On" : localStorage.getItem('temp')); 
+
+  function changeWind(){
+    if (wind === "On") {
+      setWind("Off");
+      localStorage.setItem('wind', 'Off')
+    }else{
+      setWind('On');
+      localStorage.setItem('wind', 'On');
+    }
+  }
+
+  function changeSun(){
+    if (sun === "On") {
+      setSun("Off");
+      localStorage.setItem('sun', 'Off')
+    }else{
+
+      setSun('On');
+      localStorage.setItem('sun', 'On');
+    }
+  }
+
+  function changeTemp(){
+    if (temp === "On") {
+      setTemp("Off");
+      localStorage.setItem('temp', 'Off')
+    }else{
+      setTemp('On');
+      localStorage.setItem('temp', 'On');
+    }
+  }
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -24,9 +56,9 @@ export default function Navbar({changeCity, settings, setSettings, openSideBar})
       <h2 className="text-center font-bold text-[64px]">Settings</h2>
       <p className="text-center font-semibold text-[32px]">Choose what kind of data do you want to display</p>
       <ul className="flex flex-col text-[32px] font-semibold w-1/2">
-        <li className="flex justify-between mb-2 p-1">Wind<button onClick={() => {setSettings({wind: !settings.wind, sun: settings.sun, temp: settings.temp}); wind == "On" ? setWind("Off") : setWind("On")}} className="border-black border-[2px] rounded-xl w-[70px]">{wind}</button></li>
-        <li className="flex justify-between mb-2 p-1">Sunset & Sunrise<button onClick={() => {setSettings({wind: settings.wind, sun: !settings.sun, temp: settings.temp}); sun == "On" ? setSun("Off") : setSun("On")}} className="border-black border-[2px] rounded-xl w-[70px]">{sun}</button></li>
-        <li className="flex justify-between mb-2 p-1">Temperature<button onClick={() => {setSettings({wind: settings.wind, sun: settings.sun, temp: !settings.temp}); temp == "On" ? setTemp("Off") : setTemp("On")}} className="border-black border-[2px] rounded-xl w-[70px]">{temp}</button></li>
+        <li className="flex justify-between mb-2 p-1">Wind<button onClick={() => {setSettings({wind: !settings.wind, sun: settings.sun, temp: settings.temp}); localStorage.setItem('settingsWind', JSON.stringify(!settings.wind)); changeWind()}} className="border-black border-[2px] rounded-xl w-[70px]">{wind}</button></li>
+        <li className="flex justify-between mb-2 p-1">Sunset & Sunrise<button onClick={() => {setSettings({wind: settings.wind, sun: !settings.sun, temp: settings.temp}); localStorage.setItem('settingsSun', JSON.stringify(!settings.sun)); changeSun()}} className="border-black border-[2px] rounded-xl w-[70px]">{sun}</button></li>
+        <li className="flex justify-between mb-2 p-1">Temperature<button onClick={() => {setSettings({wind: settings.wind, sun: settings.sun, temp: !settings.temp}); localStorage.setItem('settingsTemp', JSON.stringify(!settings.temp)); changeTemp()}} className="border-black border-[2px] rounded-xl w-[70px]">{temp}</button></li>
       </ul>
       <button onClick={closeModal} className="border-[3px] p-1 border-black text-[32px] font-semibold rounded-2xl">Close</button>
     </div>
