@@ -6,15 +6,13 @@ import "../styles/Main.css"
 export default function Body({position, settings, changeCity, city}) {
   const [data, setData] = useState(null);
   const [icon, setIcon] = useState(null);
-  const [cities, setCities] = useState([]);
-  const [staticCities, setStaticCities] = useState([]);
+  const [cities, setCities] = useState(JSON.parse(localStorage.getItem("cities")) !== null ? JSON.parse(localStorage.getItem("cities")) : []);
+  const [staticCities, setStaticCities] = useState(JSON.parse(localStorage.getItem("cities")) !== null ? JSON.parse(localStorage.getItem("cities")) : []);
   const [inputSearch, setInputSearch] = useState("");
   const search = useRef(null);
   const wind = useRef(null);
   const sun = useRef(null);
   const temp = useRef(null);
-  // JSON.parse(localStorage.getItem("cities"))
-  // JSON.parse(localStorage.getItem("cities"))
 
   useEffect(() => {
     const API_key = "3f0661a993a1df77691d6bc7819ae9ed";
