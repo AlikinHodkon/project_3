@@ -15,7 +15,7 @@ export default {
       backgroundImage: {
         'clearSky': 'url("./clearSky.jpg")',
         'clouds': 'url("./1479.gif)',
-        'cloudsAbove': 'url("./srY.gif")'
+        'cloudsAbove': 'url("srY.gif")'
       }
     },
   },
