@@ -30,7 +30,7 @@ export default function Main() {
     return (
         <div>
             <Navbar changeCity={changeCity} settings={settings} setSettings={setSettings} openSideBar={openSideBar} />
-            <Body position={position} settings={settings} changeCity={changeCity} city={city} />
+            <Body position={position} settings={settings} changeCity={changeCity} />
         </div>
   )
 }

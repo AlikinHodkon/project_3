@@ -5,7 +5,7 @@ import axios from 'axios'
 import City from './City';
 import "../styles/Main.css"
 
-export default function Body({position, settings, changeCity, city}) {
+export default function Body({position, settings, changeCity}) {
   const [data, setData] = useState(null);
   const [icon, setIcon] = useState(null);
   const [cities, setCities] = useState(JSON.parse(localStorage.getItem("cities")) !== null ? JSON.parse(localStorage.getItem("cities")) : []);
@@ -33,9 +33,9 @@ export default function Body({position, settings, changeCity, city}) {
         setIcon("./"+response.data.weather[0].icon+".svg");
         search.current.value = "";
         setInputSearch("");
-        if (cities.filter((c) => c.name == city).length == 0) setCities([...cities, {id: Date.now(), name: city}])
-        setStaticCities([...cities, {id: Date.now(), name: city}]);
-        localStorage.setItem("cities", JSON.stringify([...cities, {id: Date.now(), name: city}]));
+        if (cities.filter((c) => c.name == response.data.name).length == 0) setCities([...cities, {id: Date.now(), name: response.data.name}])
+        setStaticCities([...cities, {id: Date.now(), name: response.data.name}]);
+        localStorage.setItem("cities", JSON.stringify([...cities, {id: Date.now(), name: response.data.name}]));
         console.log(JSON.parse(localStorage.getItem("cities")));
       })
     }
