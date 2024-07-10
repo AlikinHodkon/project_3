@@ -14,7 +14,7 @@ function App() {
   ])
 
   return(
-    <div className="bg-cloudsAbove bg-cover min-h-[100vh] bg-no-repeat">
+    <div className="bg-night bg-cover min-h-[100vh] bg-no-repeat">
       <RouterProvider router={router} />
     </div>
   )
