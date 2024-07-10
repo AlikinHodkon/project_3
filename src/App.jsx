@@ -5,17 +5,17 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 function App() {
 
-  // const router = createBrowserRouter([
-  //   {
-  //     path: "/project_3/",
-  //     element: <Main />,
-  //     errorElement: <Error />,
-  //   }
-  // ])
+  const router = createBrowserRouter([
+    {
+      path: "/project_3/",
+      element: <Main />,
+      errorElement: <Error />,
+    }
+  ])
 
   return(
     <div className="bg-night bg-cover min-h-[100vh] bg-no-repeat">
-      <Main />
+      <RouterProvider router={router} />
     </div>
   )
 }
