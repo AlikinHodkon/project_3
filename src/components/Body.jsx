@@ -118,7 +118,7 @@ export default function Body({position, settings, changeCity}) {
             </div>
         </div>
         <div id="sideBar" className='glass rounded-[15px] w-2/12 max-h-[93vh] text-white font-Mont overflow-auto hidden'>
-          <input ref={search} onChange={() => {setInputSearch(search.current.value)}} className='pl-5 w-full border glass outline-none border-black text-white text-[24px]' placeholder='City' />
+          <input ref={search} onChange={() => {setInputSearch(search.current.value)}} className='pl-5 w-full glass outline-none placeholder:text-white text-white text-[24px]' placeholder='Search City' />
           {cities.map((city) => <City city={city} removeCity={removeCity} changeCity={changeCity} key={city.id}/>)}
         </div>
     </div>
