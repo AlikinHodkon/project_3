@@ -74,7 +74,7 @@ export default function Navbar({changeCity, settings, setSettings, openSideBar})
     <div className='flex w-full max-h-[70px] text-white'>
         <ul className='flex w-full text-[24px] font-semibold font-Mont items-center justify-center'>
             <li className="mr-auto ml-[5vw] text-[32px]">Your Weather</li>
-            <li className="p-1 mr-[5vw]"><input ref={inputCity} onKeyDownCapture={handleKeyPressed} type='text' className='h-1/2 p-15 outline-none glass bg-transparent text-[32px] placeholder:text-white' placeholder='Search City' /></li>
+            <li className="p-1 mr-[5vw]"><input ref={inputCity} onKeyDownCapture={handleKeyPressed} type='text' className='h-1/2 p-15 outline-none bg-transparent text-[32px] placeholder:text-white' placeholder='Search City' /></li>
             {/* <li className="mr-[5vw]"><button className='border-[2px] rounded-xl p-1 border-white w-[6vw]'>Search</button></li> */}
             <li className="mr-[5vw] h-full flex items-center justify-center cursor-pointer text-[24px]" onClick={() => {changeCity("")}}>Home</li>
             <li className="mr-[5vw] h-full flex items-center justify-center cursor-pointer text-[24px]" onClick={() => {openSideBar()}}>Cities</li>

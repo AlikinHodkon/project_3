@@ -74,24 +74,24 @@ export default function Body({position, settings, changeCity}) {
       temp.current.classList.add('hidden');
     } 
   }, [settings.temp])
-
+  // bg-[#1B1B1D]
   return (
     <div className='flex flex-row min-h-[93vh] font-Mont text-white'>
         <div className='flex flex-col w-full'>
           <h1 className='text-[64px] text-center font-bold'>Weather in {data?.name}</h1>
             <div className='flex'>
-              <div className='flex flex-col w-[20vw] ml-[5vw] p-1 bg-[#1B1B1D] rounded-[15px] h-[25vh] items-center justify-center'>
+              <div className='flex flex-col w-[20vw] ml-[5vw] p-1 glass rounded-[15px] h-[25vh] items-center justify-center glass'>
                 <p className='text-[40px] text-center'>{data?.name}</p>
                 <p className='text-[40px] text-center'>{data?.sys.country}</p>
               </div>
               <img className='ml-auto mr-[5vw] min-w-[20vw] max-h-[25vh] object-cover' src={icon}></img>
             </div> 
             <div className='min-w-[70vw] flex'>
-              <div className='flex flex-col bg-[#1B1B1D] w-[20vw] ml-[5vw] mt-5 h-[25vh] rounded-[15px] items-center justify-center'>
+              <div className='flex flex-col glass w-[20vw] ml-[5vw] mt-5 h-[25vh] rounded-[15px] items-center justify-center'>
                 <p className='text-[40px] text-center'>{data?.weather[0].main}</p>
                 <p className='text-[20px] text-center'>{data?.weather[0].description}</p>
               </div>
-              <div ref={wind} className='flex items-center justify-center flex-col ml-5 bg-[#1B1B1D] rounded-[15px] w-[20vw] h-[25vh] mt-5 hidden'>
+              <div ref={wind} className='flex items-center justify-center flex-col ml-5 glass rounded-[15px] w-[20vw] h-[25vh] mt-5 hidden'>
                 <h3 className='text-[40px]'>Wind</h3>
                 <div className='flex flex-col'>
                   <p className='text-[20px] text-center'>deg: {data?.wind.deg} </p>
@@ -99,7 +99,7 @@ export default function Body({position, settings, changeCity}) {
                   <p className='text-[20px] text-center'>spd: {data?.wind.speed} m/s</p>
                 </div>
               </div>
-              <div ref={sun} className='flex items-center justify-center flex-col ml-5 bg-[#1B1B1D] rounded-[15px] w-[20vw] h-[25vh] mt-5 hidden'> 
+              <div ref={sun} className='flex items-center justify-center flex-col ml-5 glass rounded-[15px] w-[20vw] h-[25vh] mt-5 hidden'> 
                 <h3 className='text-[40px]'>Sun</h3>
                 <div className='flex flex-row'>
                   <div className='text-[20px] text-center'>
@@ -109,7 +109,7 @@ export default function Body({position, settings, changeCity}) {
                 </div>
               </div>
             </div>
-            <div ref={temp} className='flex flex-col ml-[5vw] mr-[5vw] mt-5 min-h-[25vh] items-center justify-center bg-[#1B1B1D] rounded-[15px] hidden'>
+            <div ref={temp} className='flex flex-col ml-[5vw] mr-[5vw] mt-5 min-h-[25vh] items-center justify-center glass rounded-[15px] hidden'>
               <h3 className='text-[40px] text-center'>Temperature</h3>
               <div className='flex justify-center'>
                 <p className='text-[20px] text-center'>real: {(Math.round((data?.main.temp-273.15) * 100) / 100).toString()} </p>
@@ -117,8 +117,8 @@ export default function Body({position, settings, changeCity}) {
               </div>
             </div>
         </div>
-        <div id="sideBar" className='bg-[#1B1B1D] rounded-[15px] w-2/12 max-h-[93vh] rounded-lg text-white font-Mont overflow-auto hidden'>
-          <input ref={search} onChange={() => {setInputSearch(search.current.value)}} className='pl-5 w-full border glass outline-none border-black text-white' placeholder='City' />
+        <div id="sideBar" className='glass rounded-[15px] w-2/12 max-h-[93vh] text-white font-Mont overflow-auto hidden'>
+          <input ref={search} onChange={() => {setInputSearch(search.current.value)}} className='pl-5 w-full border glass outline-none border-black text-white text-[24px]' placeholder='City' />
           {cities.map((city) => <City city={city} removeCity={removeCity} changeCity={changeCity} key={city.id}/>)}
         </div>
     </div>
