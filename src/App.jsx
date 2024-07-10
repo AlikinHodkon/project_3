@@ -15,7 +15,7 @@ function App() {
 
   return(
     <div className="bg-night bg-cover min-h-[100vh] bg-no-repeat">
-      <RouterProvider router={router} />
+      <Main />
     </div>
   )
 }
