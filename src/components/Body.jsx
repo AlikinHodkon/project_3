@@ -4,6 +4,7 @@ import { useEffect, useState, useRef  } from 'react'
 import axios from 'axios'
 import City from './City';
 import "../styles/Main.css"
+import Spinner from './Spinner';
 
 export default function Body({position, settings, changeCity, realCity, changeBg}) {
   const [data, setData] = useState(null);
@@ -11,19 +12,25 @@ export default function Body({position, settings, changeCity, realCity, changeBg
   const [cities, setCities] = useState(JSON.parse(localStorage.getItem("cities")) !== null ? JSON.parse(localStorage.getItem("cities")) : []);
   const [staticCities, setStaticCities] = useState(JSON.parse(localStorage.getItem("cities")) !== null ? JSON.parse(localStorage.getItem("cities")) : []);
   const [inputSearch, setInputSearch] = useState("");
+  const [loading, setLoading] = useState(false);
   const search = useRef(null);
   const wind = useRef(null);
   const sun = useRef(null);
   const temp = useRef(null);
+  const body = useRef(null);
   const h = new Date().getHours() - new Date().getUTCHours();
 
   useEffect(() => {
+    setLoading(true);
+    body.current.classList.add('hidden');
     const API_key = "3f0661a993a1df77691d6bc7819ae9ed";
     if (position === null){
       navigator.geolocation.getCurrentPosition((position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
         axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_key}`).then((response) => {
+          setLoading(false);
+          body.current.classList.remove('hidden');
           setData(response.data);
           setIcon("./"+response.data.weather[0].icon+".svg");
           changeBg("gif_"+response.data.weather[0].icon)
@@ -31,6 +38,8 @@ export default function Body({position, settings, changeCity, realCity, changeBg
       });
     }else{
       axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${position.lat}&lon=${position.lon}&appid=${API_key}`).then((response) => {
+        setLoading(false);
+        body.current.classList.remove('hidden');
         setData(response.data);
         setIcon("./"+response.data.weather[0].icon+".svg");
         changeBg("gif_"+response.data.weather[0].icon)
@@ -80,8 +89,9 @@ export default function Body({position, settings, changeCity, realCity, changeBg
   }, [settings.temp])
   // bg-[#1B1B1D]
   return (
-    <div className='flex flex-col xl:flex-row xl:min-h-[93vh] font-Mont text-white'>
-        <div className='flex flex-col w-full'>
+    <div className='flex flex-col justify-center xl:flex-row min-h-[93vh] font-Mont text-white'>
+        {loading ? <Spinner /> : null}
+        <div ref={body} className='flex flex-col w-full'>
           <h1 className='xl:text-[64px] text-[24px] text-center font-bold'>Weather in {data?.name}</h1>
             <div className='flex flex-wrap xl:flex-row flex-col-reverse'>
               <div className='flex flex-col xl:w-[20vw] min-h-[15vh] xl:ml-[5vw] xl:mr-0 mr-5 ml-5 p-1 glass rounded-[15px] xl:h-[25vh] items-center justify-center glass'>
@@ -113,7 +123,7 @@ export default function Body({position, settings, changeCity, realCity, changeBg
                 </div>
               </div>
             </div>
-            <div ref={temp} className='flex flex-col ml-[5vw] mr-[5vw] mt-5 xl:min-h-[25vh] min-h-[15vh] items-center justify-center glass rounded-[15px] hidden'>
+            <div ref={temp} className='flex flex-col ml-[5vw] mr-[5vw] mt-5 mb-2 xl:min-h-[25vh] min-h-[15vh] items-center justify-center glass rounded-[15px] hidden'>
               <h3 className='xl:text-[40px] text-[30px] text-center'>Temperature</h3>
               <div className='flex justify-center'>
                 <p className='xl:text-[20px] text-[20px] text-center'>real: {(Math.round((data?.main.temp-273.15) * 100) / 100).toString()} </p>
