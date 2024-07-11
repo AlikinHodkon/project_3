@@ -121,7 +121,7 @@ export default function Body({position, settings, changeCity, realCity, changeBg
         </div>
         <div id="sideBar" className='glass rounded-[15px] w-full max-h-[35vh] xl:w-2/12 xl:max-h-[93vh] text-white font-Mont overflow-auto hidden'>
           <input ref={search} onChange={() => {setInputSearch(search.current.value)}} className='pl-10 w-full glass outline-none search placeholder:text-white text-white text-[24px]' placeholder='Search City' />
-          {cities.map((city) => <City city={city} removeCity={removeCity} changeCity={changeCity} key={city.id}/>)}
+          {cities.map((city) => <City city={city} currentCity={data?.name} removeCity={removeCity} changeCity={changeCity} key={city.id}/>)}
         </div>
     </div>
   )

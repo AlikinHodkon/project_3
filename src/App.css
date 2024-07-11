@@ -1,71 +1,71 @@
 .gif_01d{
-    background: url("../public/sun.gif");
+    background: url("./sun.gif");
 }
 
 .gif_01n{
-    background: url("../public/night.gif");
+    background: url("./night.gif");
 }
 
 .gif_02d{
-    background: url("../public/sun.gif");
+    background: url("./sun.gif");
 }
 
 .gif_02n{
-    background: url("../public/night.gif");
+    background: url("./night.gif");
 }
 
 .gif_03d{
-    background: url("../public/clouds.gif");
+    background: url("./clouds.gif");
 }
 
 .gif_03n{
-    background: url("../public/clouds.gif");
+    background: url("./clouds.gif");
 }
 
 .gif_04d{
-    background: url("../public/clouds.gif");
+    background: url("./clouds.gif");
 }
 
 .gif_04n{
-    background: url("../public/clouds.gif")
+    background: url("./clouds.gif")
 }
 
 .gif_09d{
-    background: url("../public/rain.gif");
+    background: url("./rain.gif");
 }
 
 .gif_09n{
-    background: url("../public/nightRain.gif");
+    background: url("./nightRain.gif");
 }
 
 .gif_10d{
-    background: url("../public/rain.gif");
+    background: url("./rain.gif");
 }
 
 .gif_10n{
-    background: url("../public/nightRain.gif");
+    background: url("./nightRain.gif");
 }
 
 .gif_11d{
-    background: url("../public/lightning.gif");
+    background: url("./lightning.gif");
 }
 
 .gif_11n{
-    background: url("../public/lightning.gif");
+    background: url("./lightning.gif");
 }
 
 .gif_13d{
-    background: url("../public/snow.gif");
+    background: url("./snow.gif");
 }
 
 .gif_13n{
-    background: url("../public/snow.gif");
+    background: url("./snow.gif");
 }
 
 .gif_50d{
-    background: url("../public/fog.gif");
+    background: url("./fog.gif");
 }
 
 .gif_50n{
-    background: url("../public/fog.gif");
+    background: url("./fog.gif");
 }
