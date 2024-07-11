@@ -5,7 +5,7 @@ import axios from 'axios'
 import City from './City';
 import "../styles/Main.css"
 
-export default function Body({position, settings, changeCity}) {
+export default function Body({position, settings, changeCity, realCity, changeBg}) {
   const [data, setData] = useState(null);
   const [icon, setIcon] = useState(null);
   const [cities, setCities] = useState(JSON.parse(localStorage.getItem("cities")) !== null ? JSON.parse(localStorage.getItem("cities")) : []);
@@ -19,24 +19,26 @@ export default function Body({position, settings, changeCity}) {
 
   useEffect(() => {
     const API_key = "3f0661a993a1df77691d6bc7819ae9ed";
-    if (position == null){
+    if (position === null){
       navigator.geolocation.getCurrentPosition((position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
         axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_key}`).then((response) => {
           setData(response.data);
           setIcon("./"+response.data.weather[0].icon+".svg");
+          changeBg("gif_"+response.data.weather[0].icon)
         })
       });
     }else{
       axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${position.lat}&lon=${position.lon}&appid=${API_key}`).then((response) => {
         setData(response.data);
         setIcon("./"+response.data.weather[0].icon+".svg");
+        changeBg("gif_"+response.data.weather[0].icon)
         search.current.value = "";
         setInputSearch("");
-        if (cities.filter((c) => c.name == response.data.name).length == 0) setCities([...cities, {id: Date.now(), name: response.data.name}])
-        setStaticCities([...cities, {id: Date.now(), name: response.data.name}]);
-        localStorage.setItem("cities", JSON.stringify([...cities, {id: Date.now(), name: response.data.name}]));
+        if (cities.filter((c) => (c.name === response.data.name)).length == 0) setCities([...cities, {id: Date.now(), real_name: realCity, name: response.data.name}])
+        setStaticCities([...cities, {id: Date.now(), real_name: realCity, name: response.data.name}]);
+        localStorage.setItem("cities", JSON.stringify([...cities, {id: Date.now(), real_name: realCity, name: response.data.name}]));
       })
     }
   }, [position])

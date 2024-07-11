@@ -1,3 +1,71 @@
-.gif{
-    background: url("../public/srY.gif");
+.gif_01d{
+    background: url("../public/sun.gif");
+}
+
+.gif_01n{
+    background: url("../public/night.gif");
+}
+
+.gif_02d{
+    background: url("../public/sun.gif");
+}
+
+.gif_02n{
+    background: url("../public/night.gif");
+}
+
+.gif_03d{
+    background: url("../public/clouds.gif");
+}
+
+.gif_03n{
+    background: url("../public/clouds.gif");
+}
+
+.gif_04d{
+    background: url("../public/clouds.gif");
+}
+
+.gif_04n{
+    background: url("../public/clouds.gif")
+}
+
+.gif_09d{
+    background: url("../public/rain.gif");
+}
+
+.gif_09n{
+    background: url("../public/nightRain.gif");
+}
+
+.gif_10d{
+    background: url("../public/rain.gif");
+}
+
+.gif_10n{
+    background: url("../public/nightRain.gif");
+}
+
+.gif_11d{
+    background: url("../public/lightning.gif");
+}
+
+.gif_11n{
+    background: url("../public/lightning.gif");
+}
+
+.gif_13d{
+    background: url("../public/snow.gif");
+}
+
+.gif_13n{
+    background: url("../public/snow.gif");
+}
+
+.gif_50d{
+    background: url("../public/fog.gif");
+}
+
+.gif_50n{
+    background: url("../public/fog.gif");
 }

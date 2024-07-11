@@ -14,7 +14,7 @@ function App() {
   ])
   // bg-[#111015] 
   return(
-    <div className="bg-cover gif min-h-[100vh] w-full bg-no-repeat">
+    <div className="min-h-[100vh] w-full">
       <RouterProvider router={router} />
     </div>
   )

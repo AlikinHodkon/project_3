@@ -2,6 +2,7 @@ import Body from "../components/Body";
 import Navbar from "../components/Navbar";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "../App.css"
 
 export default function Main() {
     const [city, setCity] = useState("");
@@ -11,9 +12,14 @@ export default function Main() {
         sun: JSON.parse(localStorage.getItem('settingsSun')) === null ? true : JSON.parse(localStorage.getItem('settingsSun')), 
         temp: JSON.parse(localStorage.getItem('settingsTemp')) === null ? true : JSON.parse(localStorage.getItem('settingsTemp'))
     })
+    const [bg, setBg] = useState("gif_03d");
 
     function openSideBar(){
         document.getElementById("sideBar").classList.toggle('hidden');
+    }
+
+    function changeBg(newBg){
+        setBg(newBg);
     }
 
     function changeCity(newCity){
@@ -28,9 +34,9 @@ export default function Main() {
     })}, [city]);
 
     return (
-        <div>
+        <div className={`${bg} bg-cover min-h-[100vh] bg-no-repeat`}>
             <Navbar changeCity={changeCity} settings={settings} setSettings={setSettings} openSideBar={openSideBar} />
-            <Body position={position} settings={settings} changeCity={changeCity} />
+            <Body position={position} settings={settings} changeBg={changeBg} realCity={city} changeCity={changeCity} />
         </div>
   )
 }
