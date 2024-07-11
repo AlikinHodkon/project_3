@@ -5,7 +5,7 @@ import axios from "axios";
 import "../App.css"
 
 export default function Main() {
-    const [city, setCity] = useState("");
+    const [city, setCity] = useState(localStorage.getItem('lastCity') === null ? "" : localStorage.getItem('lastCity'));
     const [position, setPosition] = useState(null);
     const [settings, setSettings] = useState({
         wind: JSON.parse(localStorage.getItem('settingsWind')) === null ? true : JSON.parse(localStorage.getItem('settingsWind')), 
@@ -27,7 +27,7 @@ export default function Main() {
     }
 
     useEffect(() => {
-        if (city == "") {setPosition(null); return;}    
+        if (city === "") {setPosition(null); return;}    
         const API_key = "3f0661a993a1df77691d6bc7819ae9ed";
         axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${API_key}`).then((response) => {
         setPosition({lat: response.data[0].lat, lon: response.data[0].lon })

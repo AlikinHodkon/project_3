@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 export default function City({city, removeCity, changeCity, currentCity}) {
   const [current, setCurrent] = useState("");
   useEffect(() => {
-    if (currentCity == city.name){
+    if (currentCity === city.name){
       setCurrent("text-gray-700")
     }else{
       setCurrent("");

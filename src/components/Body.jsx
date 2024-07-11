@@ -25,6 +25,7 @@ export default function Body({position, settings, changeCity, realCity, changeBg
     body.current.classList.add('hidden');
     const API_key = "3f0661a993a1df77691d6bc7819ae9ed";
     if (position === null){
+      localStorage.removeItem('lastCity');
       navigator.geolocation.getCurrentPosition((position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
@@ -45,6 +46,7 @@ export default function Body({position, settings, changeCity, realCity, changeBg
         changeBg("gif_"+response.data.weather[0].icon)
         search.current.value = "";
         setInputSearch("");
+        localStorage.setItem('lastCity', realCity);
         if (cities.filter((c) => (c.real_name === realCity)).length == 0){
           setCities([...cities, {id: Date.now(), real_name: realCity, name: response.data.name}])
           setStaticCities([...cities, {id: Date.now(), real_name: realCity, name: response.data.name}]);
