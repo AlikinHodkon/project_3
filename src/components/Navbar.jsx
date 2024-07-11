@@ -60,14 +60,14 @@ export default function Navbar({changeCity, settings, setSettings, openSideBar})
 
   const modalContent = (
     <div className="font-Mont flex flex-col items-center">
-      <h2 className="text-center font-bold text-[64px]">Settings</h2>
-      <p className="text-center font-semibold text-[32px]">Choose what kind of data do you want to display</p>
-      <ul className="flex flex-col text-[32px] font-semibold w-1/2">
-        <li className="flex justify-between mb-2 p-1">Wind<button onClick={() => {setSettings({wind: !settings.wind, sun: settings.sun, temp: settings.temp}); localStorage.setItem('settingsWind', JSON.stringify(!settings.wind)); changeWind()}} className="border-black border-[2px] rounded-xl w-[70px]">{wind}</button></li>
-        <li className="flex justify-between mb-2 p-1">Sunset & Sunrise<button onClick={() => {setSettings({wind: settings.wind, sun: !settings.sun, temp: settings.temp}); localStorage.setItem('settingsSun', JSON.stringify(!settings.sun)); changeSun()}} className="border-black border-[2px] rounded-xl w-[70px]">{sun}</button></li>
-        <li className="flex justify-between mb-2 p-1">Temperature<button onClick={() => {setSettings({wind: settings.wind, sun: settings.sun, temp: !settings.temp}); localStorage.setItem('settingsTemp', JSON.stringify(!settings.temp)); changeTemp()}} className="border-black border-[2px] rounded-xl w-[70px]">{temp}</button></li>
+      <h2 className="text-center font-bold xl:text-[64px] text-[40px]">Settings</h2>
+      <p className="text-center font-semibold xl:text-[32px] text-[20px]">Choose what kind of data do you want to display</p>
+      <ul className="flex flex-col xl:text-[32px] mt-5 mb-5 text-[20px] font-semibold xl:w-1/2 w-full pl-3 xl:pl-0 xl:pr-0 pr-3">
+        <li className="flex xl:justify-between justify-center items-center mb-2 p-1 xl:flex-row flex-col">Wind<button onClick={() => {setSettings({wind: !settings.wind, sun: settings.sun, temp: settings.temp}); localStorage.setItem('settingsWind', JSON.stringify(!settings.wind)); changeWind()}} className="border-black border-[2px] rounded-xl xl:w-[70px] w-1/2">{wind}</button></li>
+        <li className="flex xl:justify-between justify-center items-center mb-2 p-1 xl:flex-row flex-col">Sunset & Sunrise<button onClick={() => {setSettings({wind: settings.wind, sun: !settings.sun, temp: settings.temp}); localStorage.setItem('settingsSun', JSON.stringify(!settings.sun)); changeSun()}} className="border-black border-[2px] rounded-xl xl:w-[70px] w-1/2">{sun}</button></li>
+        <li className="flex xl:justify-between justify-center items-center mb-2 p-1 xl:flex-row flex-col">Temperature<button onClick={() => {setSettings({wind: settings.wind, sun: settings.sun, temp: !settings.temp}); localStorage.setItem('settingsTemp', JSON.stringify(!settings.temp)); changeTemp()}} className="border-black border-[2px] rounded-xl xl:w-[70px] w-1/2">{temp}</button></li>
       </ul>
-      <button onClick={closeModal} className="border-[3px] p-1 border-black text-[32px] font-semibold rounded-2xl">Close</button>
+      <button onClick={closeModal} className="border-[3px] p-1 border-black xl:text-[32px] text-[20px] font-semibold rounded-2xl">Close</button>
     </div>
   );
   return (

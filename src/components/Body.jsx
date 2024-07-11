@@ -113,7 +113,7 @@ export default function Body({position, settings, changeCity, realCity, changeBg
                 </div>
               </div>
             </div>
-            <div ref={temp} className='flex flex-col ml-[5vw] mr-[5vw] mt-5 xl:mb-0 mb-5 xl:min-h-[25vh] min-h-[15vh] items-center justify-center glass rounded-[15px] hidden'>
+            <div ref={temp} className='flex flex-col ml-[5vw] mr-[5vw] mt-5 xl:min-h-[25vh] min-h-[15vh] items-center justify-center glass rounded-[15px] hidden'>
               <h3 className='xl:text-[40px] text-[30px] text-center'>Temperature</h3>
               <div className='flex justify-center'>
                 <p className='xl:text-[20px] text-[20px] text-center'>real: {(Math.round((data?.main.temp-273.15) * 100) / 100).toString()} </p>
@@ -121,7 +121,7 @@ export default function Body({position, settings, changeCity, realCity, changeBg
               </div>
             </div>
         </div>
-        <div id="sideBar" className='glass rounded-[15px] w-full max-h-[35vh] xl:w-2/12 xl:max-h-[93vh] text-white font-Mont overflow-auto hidden'>
+        <div id="sideBar" className='glass rounded-[15px] w-full xl:mt-0 mt-5 max-h-[35vh] xl:w-2/12 xl:max-h-[93vh] text-white font-Mont overflow-auto hidden'>
           <input ref={search} onChange={() => {setInputSearch(search.current.value)}} className='pl-10 w-full glass outline-none search placeholder:text-white text-white text-[24px]' placeholder='Search City' />
           {cities.map((city) => <City city={city} currentCity={data?.name} removeCity={removeCity} changeCity={changeCity} key={city.id}/>)}
         </div>
