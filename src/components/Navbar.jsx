@@ -59,7 +59,7 @@ export default function Navbar({changeCity, settings, setSettings, openSideBar})
   };
 
   const modalContent = (
-    <div className="font-Robot flex flex-col items-center">
+    <div className="font-Mont flex flex-col items-center">
       <h2 className="text-center font-bold text-[64px]">Settings</h2>
       <p className="text-center font-semibold text-[32px]">Choose what kind of data do you want to display</p>
       <ul className="flex flex-col text-[32px] font-semibold w-1/2">

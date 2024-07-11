@@ -36,9 +36,11 @@ export default function Body({position, settings, changeCity, realCity, changeBg
         changeBg("gif_"+response.data.weather[0].icon)
         search.current.value = "";
         setInputSearch("");
-        if (cities.filter((c) => (c.name === response.data.name)).length == 0) setCities([...cities, {id: Date.now(), real_name: realCity, name: response.data.name}])
-        setStaticCities([...cities, {id: Date.now(), real_name: realCity, name: response.data.name}]);
-        localStorage.setItem("cities", JSON.stringify([...cities, {id: Date.now(), real_name: realCity, name: response.data.name}]));
+        if (cities.filter((c) => (c.real_name === realCity)).length == 0){
+          setCities([...cities, {id: Date.now(), real_name: realCity, name: response.data.name}])
+          setStaticCities([...cities, {id: Date.now(), real_name: realCity, name: response.data.name}]);
+          localStorage.setItem("cities", JSON.stringify([...cities, {id: Date.now(), real_name: realCity, name: response.data.name}]));
+        }
       })
     }
   }, [position])
