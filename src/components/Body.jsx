@@ -15,6 +15,7 @@ export default function Body({position, settings, changeCity}) {
   const wind = useRef(null);
   const sun = useRef(null);
   const temp = useRef(null);
+  const h = new Date().getHours() - new Date().getUTCHours();
 
   useEffect(() => {
     const API_key = "3f0661a993a1df77691d6bc7819ae9ed";
@@ -102,8 +103,8 @@ export default function Body({position, settings, changeCity}) {
                 <h3 className='xl:text-[40px] text-[30px]'>Sun</h3>
                 <div className='flex flex-row'>
                   <div className='xl:text-[20px] text-[20px] text-center'>
-                    <p>sunrise: {new Date(data?.sys.sunrise * 1000).toUTCString().slice(-12, -4)}</p>
-                    <p>sunset: {new Date(data?.sys.sunset * 1000).toUTCString().slice(-12, -4)}</p>
+                    <p>sunrise: {new Date(data?.sys.sunrise * 1000 + (h*60*60*1000)).toUTCString().slice(-12, -4)}</p>
+                    <p>sunset: {new Date(data?.sys.sunset * 1000 + (h*60*60*1000)).toUTCString().slice(-12, -4)}</p>
                   </div>
                 </div>
               </div>
