@@ -17,4 +17,4 @@ https://alikinhodkon.github.io/project_3/
 - Vite
 - Modal
 - Debounce
-- TailWind
+- Tailwind CSS
