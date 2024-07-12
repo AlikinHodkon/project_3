@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { useEffect, useState, useRef  } from 'react'
+import { useDebounce } from "use-debounce";
 import axios from 'axios'
 import City from './City';
 import "../styles/Main.css"
@@ -12,6 +13,7 @@ export default function Body({position, settings, changeCity, realCity, changeBg
   const [cities, setCities] = useState(JSON.parse(localStorage.getItem("cities")) !== null ? JSON.parse(localStorage.getItem("cities")) : []);
   const [staticCities, setStaticCities] = useState(JSON.parse(localStorage.getItem("cities")) !== null ? JSON.parse(localStorage.getItem("cities")) : []);
   const [inputSearch, setInputSearch] = useState("");
+  const [debounceText] = useDebounce(inputSearch, 500);
   const [loading, setLoading] = useState(false);
   const search = useRef(null);
   const wind = useRef(null);
@@ -34,6 +36,7 @@ export default function Body({position, settings, changeCity, realCity, changeBg
           setLoading(false);
           body.current.classList.remove('hidden');
           setData(response.data);
+          search.current.value = "";
           setIcon("./"+response.data.weather[0].icon+".svg");
           changeBg("gif_"+response.data.weather[0].icon)
         })
@@ -45,22 +48,22 @@ export default function Body({position, settings, changeCity, realCity, changeBg
         setData(response.data);
         setIcon("./"+response.data.weather[0].icon+".svg");
         changeBg("gif_"+response.data.weather[0].icon)
-        search.current.value = "";
         setInputSearch("");
+        search.current.value = "";
         localStorage.setItem('lastCity', realCity);
         if (cities.filter((c) => (c.real_name === realCity)).length == 0){
           setCities([...cities, {id: Date.now(), real_name: realCity, name: response.data.name}])
-          setStaticCities([...cities, {id: Date.now(), real_name: realCity, name: response.data.name}]);
-          localStorage.setItem("cities", JSON.stringify([...cities, {id: Date.now(), real_name: realCity, name: response.data.name}]));
+          setStaticCities([...staticCities, {id: Date.now(), real_name: realCity, name: response.data.name}]);
+          localStorage.setItem("cities", JSON.stringify([...staticCities, {id: Date.now(), real_name: realCity, name: response.data.name}]));
         }
       })
     }
   }, [position])
 
   useEffect(() => {
-    if (search.current.value === "") setCities(staticCities);
-    else setCities(staticCities.filter((c) => search.current.value === c.name.substring(0, search.current.value.length)));
-  },[inputSearch])
+    if (debounceText === "") setCities(staticCities);
+    else setCities(staticCities.filter((c) => debounceText === c.name.substring(0, debounceText.length)));
+  },[debounceText])
 
   function removeCity(city){
     setCities(cities.filter((c) => c.id != city.id));
@@ -135,7 +138,7 @@ export default function Body({position, settings, changeCity, realCity, changeBg
             </div>
         </div>
         <div id="sideBar" className='glass rounded-[15px] w-full xl:mt-0 mt-5 max-h-[35vh] xl:w-2/12 xl:max-h-[93vh] text-white font-Mont overflow-auto hidden'>
-          <input ref={search} onChange={() => {setInputSearch(search.current.value)}} className='pl-10 w-full glass outline-none search placeholder:text-white text-white text-[24px]' placeholder='Search City' />
+          <input ref={search} onChange={(e) => {setInputSearch(e.target.value)}} className='pl-10 w-full glass outline-none search placeholder:text-white text-white text-[24px]' placeholder='Search City' />
           {cities.map((city) => <City city={city} currentCity={data?.name} removeCity={removeCity} changeCity={changeCity} key={city.id}/>)}
         </div>
     </div>
