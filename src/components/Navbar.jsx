@@ -76,8 +76,8 @@ export default function Navbar({changeCity, settings, setSettings, openSideBar})
             <li className="xl:mr-auto md:mr-auto lg:ml-[5vw] xl:ml-[5vw] md:text-[32px] xl:text-[32px]">Your Weather</li>
             <li className="p-1 md:mr-[3vw] lg:mr-0 xl:mr-[5vw]"><input ref={inputCity} onKeyDownCapture={handleKeyPressed} type='text' className='h-1/2 outline-none bg-transparent text-[14px] md:min-w-[30vw] md:text-[32px] max-w-[100px] xl:min-w-[30vw] xl:text-[32px] search placeholder:text-white pl-4 md:pl-10 xl:pl-10' placeholder='Search City' /></li>
             {/* <li className="mr-[5vw]"><button className='border-[2px] rounded-xl p-1 border-white w-[6vw]'>Search</button></li> */}
-            <li className="xl:mr-[5vw] mr-1 md:mr-2 lg:mr-5 h-full flex items-center lg:text-[32px] justify-center cursor-pointer text-[14px] md:text-[24px] xl:text-[24px] hover:text-gray-700" onClick={() => {changeCity("")}}>Home</li>
-            <li className="xl:mr-[5vw] mr-1 md:mr-2 h-full lg:mr-5 flex items-center lg:text-[32px] justify-center cursor-pointer text-[14px] md:text-[24px] xl:text-[24px] hover:text-gray-700" onClick={() => {openSideBar()}}>Cities</li>
+            <li className="xl:mr-[5vw] mr-1 md:mr-2 lg:mr-5 h-full flex items-center lg:text-[32px] justify-center cursor-pointer text-[14px] md:text-[24px] hover:text-gray-700" onClick={() => {changeCity("")}}>Home</li>
+            <li className="xl:mr-[5vw] mr-1 md:mr-2 h-full lg:mr-5 flex items-center lg:text-[32px] justify-center cursor-pointer text-[14px] md:text-[24px] hover:text-gray-700" onClick={() => {openSideBar()}}>Cities</li>
             <li onClick={openModal} className="xl:mr-[5vw] md:mr-2 lg:mr-5 md:text-[24px] lg:text-[32px] h-full flex items-center justify-center cursor-pointer hover:text-gray-700">Settings</li>
         </ul>
         <Modal isOpen={modalIsOpen} onRequestClose={closeModal}>{modalContent}</Modal>
